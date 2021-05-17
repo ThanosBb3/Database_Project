@@ -1,0 +1,10 @@
+import mysql.connector
+
+mydb = mysql.connector.connect(
+        host = "********",
+        user = "*****",
+        passwd = "******",
+        database = "HotelDB"
+    )
+
+mycursor = mydb.cursor()
