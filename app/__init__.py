@@ -7,9 +7,9 @@ mysql = MySQL()
 def create_app():
     
     App = Flask(__name__, static_folder='./frontend/static', template_folder='./frontend/templates')
-    App.config["MYSQL_USER"] = "Thanos"
-    App.config["MYSQL_PASSWORD"] = "thanos21"
-    App.config["MYSQL_HOST"] = "localhost"
+    App.config["MYSQL_USER"] = "*******"
+    App.config["MYSQL_PASSWORD"] = "*******"
+    App.config["MYSQL_HOST"] = "********"
     App.config["MYSQL_DB"] = "HotelDB"
     mysql.init_app(App)
 
