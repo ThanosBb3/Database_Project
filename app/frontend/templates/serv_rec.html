@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block title %}Records{% endblock %} {% block content
+%}
+
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table {
+    width: 90%;
+}
+</style>
+</head>
+<form method="POST">
+  <h3 align="center">Filters</h3>
+  <div class="form-group">
+    <label for="service_type">Service</label>
+    <select name="service_type" id="service_type">
+      <option value="All">All</option>
+      <option value="Bar">Bar</option>
+      <option value="Conference Room">Conference Room</option>
+      <option value="Gym">Gym</option>
+      <option value="Hair Salon">Hair Salon</option>
+      <option value="Restaurant">Restaurant</option>
+      <option value="Sauna">Sauna</option>
+    </select>
+    
+  </div>
+  <div class="form-group">
+    <label for="datefrom">Date From</label>
+    <input
+      type="date"
+      class="form-control"
+      id="datefrom"
+      name="datefrom"
+      placeholder="Date From"
+    />
+    
+  </div>
+    <div class="form-group">
+    <label for="dateto">Date To</label>
+    <input
+      type="date"
+      class="form-control"
+      id="dateto"
+      name="dateto"
+      placeholder="Date To"
+    />
+    
+  </div>
+  <div class="form-group">
+    <label for="costfrom">Minimum Cost</label>
+    <input
+      type="number"
+      step="0.01"
+      min="0"
+      class="form-control"
+      id="costfrom"
+      name="costfrom"
+      placeholder="Minimum Cost"
+    />
+    
+  </div>
+  <div class="form-group">
+    <label for="costto">Maximum Cost</label>
+    <input
+      type="number"
+      step="0.01"
+      min="0"
+      class="form-control"
+      id="costto"
+      name="costto"
+      placeholder="Maximum Cost"
+    />
+    
+  </div>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">View Records</button>
+</div>
+</form>
+<br />
+<br />
+<h3>List of Records of Service Usages</h3>
+<div align="center" style="width:100%, overflow: auto;">
+  <table>
+    <tr>
+      <th>NFC ID</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>SERVICE</th>
+      <th>PAYMENT AMOUNT</th>
+      <th>Entered at</th>
+      <th>Left at</th>
+    </tr>
+    {% if results != None%}
+      {% for result in results %}
+      <tr>
+      <td>{{result[0]}}</td>
+      <td>{{result[1]}}</td>
+      <td>{{result[2]}}</td>
+      <td>{{result[3]}}</td>
+      <td>{{result[4]}}</td>
+      <td>{{result[5]}}</td>
+      <td>{{result[6]}}</td>
+      </tr>
+      {% endfor %}
+    {% endif %}  
+  </table>
+</div>
+{% endblock %}

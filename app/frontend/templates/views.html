@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block title %}Info{% endblock %} {% block content
+%}
+
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table {
+    width: 90%;
+}
+</style>
+</head>
+<form method="POST">
+  <h3 align="center">Choose the data to be presented</h3>
+  <div class="form-group">
+    <label for="info">Data</label>
+    <select name="info" id="info">
+      <option value="Customer Info">Customer Info</option>
+      <option value="Service Sales">Service Sales</option>
+    </select>
+  </div>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">View Data</button>
+</div>
+</form>
+<br />
+<br />
+{% if results != None and data=="Customer Info"%}
+  <div align="center" style="width:100%, overflow: auto;">
+    <table>
+      <tr>
+        <th>NFC ID</th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Birth Date</th>
+        <th>ID Number</th>
+        <th>ID Type</th>
+        <th>ID Issue Authority</th>
+        <th>Phone Numbers</th>
+        <th>Emails</th>
+      </tr>
+        {% for result in results %}
+        <tr>
+        <td>{{result[0]}}</td>
+        <td>{{result[1]}}</td>
+        <td>{{result[2]}}</td>
+        <td>{{result[3]}}</td>
+        <td>{{result[4]}}</td>
+        <td>{{result[5]}}</td>
+        <td>{{result[6]}}</td>
+        <td>{{result[7]}}</td>
+        <td>{{result[8]}}</td>
+        <td>{{result[9]}}</td>
+        </tr>
+        {% endfor %}  
+    </table>
+  </div>
+{% endif %}
+{% if results != None and data=="Service Sales"%}
+  <div align="center" style="width:100%, overflow: auto;">
+    <table>
+      <tr>
+        <th>SERVICE ID</th>
+        <th>SERVICE NAME</th>
+        <th>SERVICE DESCRIPTION</th>
+        <th>Total Sales</th>
+      </tr>
+        {% for result in results %}
+        <tr>
+        <td>{{result[0]}}</td>
+        <td>{{result[1]}}</td>
+        <td>{{result[2]}}</td>
+        <td>{{result[3]}}</td>
+        </tr>
+        {% endfor %}  
+    </table>
+  </div>
+{% endif %}  
+{% endblock %}

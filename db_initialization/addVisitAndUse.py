@@ -47,7 +47,7 @@ def add_visit_use():
                         start = endtask + datetime.timedelta(hours=random.randint(6,12))
 
             elif x>85:
-                area = np.random.choice(['Bar', 'Restaurant', 'HairSalon'])
+                area = np.random.choice(['Bar', 'Bar', 'Bar', 'Restaurant', 'Restaurant', 'Restaurant','Restaurant', 'HairSalon'])
                 endtask = start + datetime.timedelta(hours=random.randint(1,3))
                 if endtask < finish:
                     if area=='Bar':
@@ -103,7 +103,7 @@ def add_visit_use():
 
                 if area_id in range(446,450):
                     sqlFormula = """INSERT INTO useService (NFC_ID,SERVICE_ID,date_time,cost) 
-                                    VALUES ({},{},'{}',{})""".format(i+1,5,(endtask-datetime.timedelta(minutes=random.randint(5,15))).strftime("%Y-%m-%d %H:%M:%S"),round(random.uniform(6,15),2))
+                                    VALUES ({},{},'{}',{})""".format(i+1,2,(endtask-datetime.timedelta(minutes=random.randint(5,15))).strftime("%Y-%m-%d %H:%M:%S"),round(random.uniform(6,15),2))
                     mycursor.execute(sqlFormula)
                     mydb.commit()
 
@@ -115,7 +115,7 @@ def add_visit_use():
 
                 elif area_id in range(450,460):
                     sqlFormula = """INSERT INTO useService (NFC_ID,SERVICE_ID,date_time,cost) 
-                                    VALUES ({},{},'{}',{})""".format(i+1,3,(endtask-datetime.timedelta(minutes=random.randint(5,15))).strftime("%Y-%m-%d %H:%M:%S"),round(random.uniform(5,15),2))
+                                    VALUES ({},{},'{}',{})""".format(i+1,4,(endtask-datetime.timedelta(minutes=random.randint(5,15))).strftime("%Y-%m-%d %H:%M:%S"),round(random.uniform(5,15),2))
                     mycursor.execute(sqlFormula)
                     mydb.commit()
 
