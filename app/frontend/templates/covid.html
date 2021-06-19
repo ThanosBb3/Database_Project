@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block title %}Covid Search{% endblock %} {% block content
+%}
+
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table {
+    width: 90%;
+}
+</style>
+</head>
+<form method="POST">
+  <h3 align="center">Covid Spread Check</h3>
+  <div class="form-group">
+    <label for="person">Infected ID</label>
+    <input
+      type="int"
+      class="form-control"
+      id="person"
+      name="person"
+      placeholder="Infected_Customer"
+    />
+
+  <br />
+  <div align="center">
+    <button type="submit" name="areas" value="areas" class="btn btn-primary" style="display:inline-block;">Area Visits</button>
+    <button type="submit" name="contacts" value="contacts" class="btn btn-primary" style="display:inline-block;margin-top:0;">Customer Contacts</button>
+</div>
+</form>
+<br />
+<br />
+{% if pick == 0%}
+  <h3>List of Area Visits</h3>
+  <div align="center" style="width:100%, overflow: auto;">
+    <table>
+      <tr>
+        <th>AREA ID</th>
+        <th>Area Name</th>
+        <th>Entered at</th>
+        <th>Left at</th>
+      </tr>
+      {% if results != None%}
+        {% for result in results %}
+        <tr>
+        <td>{{result[0]}}</td>
+        <td>{{result[1]}}</td>
+        <td>{{result[2]}}</td>
+        <td>{{result[3]}}</td>
+        </tr>
+        {% endfor %}
+      {% endif %}  
+    </table>
+  </div>
+{% endif %}
+{% if pick == 1%}
+  <h3>List of Covid Contacts</h3>
+  <div align="center" style="width:100%, overflow: auto;">
+    <table>
+      <tr>
+        <th>NFC ID</th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Phone Numbers</th>
+        <th>E-mail Addresses</th>
+      </tr>
+      {% if results != None%}
+        {% for result in results %}
+        <tr>
+        <td>{{result[0]}}</td>
+        <td>{{result[1]}}</td>
+        <td>{{result[2]}}</td>
+        <td>{{result[3]}}</td>
+        <td>{{result[4]}}</td>
+        </tr>
+        {% endfor %}
+      {% endif %}  
+    </table>
+  </div>
+{% endif %}
+{% endblock %}
