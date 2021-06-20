@@ -12,7 +12,7 @@ def add_access():
         #arrival = f"2021-5-{15+j//36} {9+4*((j%36)//12)}:00:00"
         #leave = f"2021-5-{15+j//36+random.randint(3,7)} 13:00:00"
 
-        entry = datetime.datetime.now()-datetime.timedelta(days=5-i//36, hours=12-4*((i%36)//12))
+        entry = datetime.datetime.now()-datetime.timedelta(days=(((44*7)+1)-22*(j//12)))
         arrival = entry.strftime("%Y-%m-%d %H:%M:%S")
         leave = (entry+datetime.timedelta(days=3)).strftime("%Y-%m-%d %H:%M:%S")
 

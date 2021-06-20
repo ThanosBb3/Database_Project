@@ -9,7 +9,7 @@ def home():
     status=200
 
     mydb = ddb.connect(
-        host = "******",
+        host = "*******",
         user = "******",
         passwd = "*******",
         database = "HotelDB"

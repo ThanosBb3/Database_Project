@@ -9,7 +9,7 @@ def add_register():
     for i in range(180):
 
         #arrival = f"2021-5-{15+i//36} {9+4*((i%36)//12)}:00:00"
-        arrival = (datetime.datetime.now()-datetime.timedelta(days=5-i//36, hours=12-4*((i%36)//12))).strftime("%Y-%m-%d %H:%M:%S")
+        arrival = (datetime.datetime.now()-datetime.timedelta(days=(44*7+1)-22*(i//12))).strftime("%Y-%m-%d %H:%M:%S")
 
         sqlFormula = """INSERT INTO register (NFC_ID,SERVICE_ID,date_time) 
                         VALUES ({},{},'{}')""".format(i+1,1,arrival)
