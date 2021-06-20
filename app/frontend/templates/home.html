@@ -1,57 +1,135 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 <h1 align="center">Welcome!!!</h1>
-<h3 align="center">Description:</h3>
+<h3 align="center">Add a new customer or add phone number/email address to an existing one</h3>
 </br>
 </br>
-<div align="center">
-  <h5>In Service Records, someone can browse </h5>
-  <h8> e.g: Session cost = cost_rate*kWh_delivered*costPerKWh <br> where cost_rate = 1   (Session Protocol = Level 1: Low) <br> cost_rate = 2   (Session Protocol = Level 2: Medium) <br> cost_rate = 3   (Session Protocol = Level 3: High)</h8>
-</div>
-</br>
+<form method="POST">
+
+  <h5> A new customer gets automatically an NFC-ID, so the field is not used at this case.</h5>
+  </br>  
   <div class="form-group">
-    <label for="kWh Requested">kWh Requested</label>
+    <label for="NFC_ID">NFC ID</label>
     <input
-      type="text"
+      type="int"
       class="form-control"
-      id="kWh_Requested"
-      name="kWh_Requested"
-      placeholder="Enter kWh you want"
+      id="NFC_ID"
+      name="NFC_ID"
+      placeholder="Existing customer NFC ID"
     />
   </div>
   <div class="form-group">
-    <label for="protocol">Protocol</label>
-    <select name="protocol" id="protocol">
-      <option value="Level 1: Low">Level 1: Low</option>
-      <option value="Level 2: Medium">Level 2: Medium</option>
-      <option value="Level 3: High">Level 3: High</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="payment">Payment</label>
-    <select name="payment" id="payment">
-      <option value="Credit_Card">Credit_Card</option>
-      <option value="Debit_Card">Debit_Card</option>
-      <option value="Smartphone_Wallet">Smartphone_Wallet</option>
-      <option value="Website_Payment">Website_Payment</option>
-      <option value="QR_Code">QR_Code</option>
-      <option value="Cash">Cash</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="point">Charging Point</label>
+    <label for="last_name">Last Name</label>
     <input
       type="text"
       class="form-control"
-      id="point"
-      name="point"
-      placeholder="Enter Charging Point ID"
+      id="last_name"
+      name="last_name"
+      placeholder="Last Name"
     />
   </div>
-  
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="first_name"
+      name="first_name"
+      placeholder="First Name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="birth_date">Birthdate</label>
+    <input
+      type="date"
+      class="form-control"
+      id="birth_date"
+      name="birth_date"
+      placeholder="Birthdate"
+    /> 
+  </div>
+  <div class="form-group">
+    <label for="id">Identification Number</label>
+    <input
+      type="bigint"
+      class="form-control"
+      id="id"
+      name="id"
+      placeholder="ID"
+    />
+  </div>
+  <div class="form-group">
+    <label for="id_type">Identification Papers</label>
+    <select name="id_type" id="id_type">
+      <option value="Identity">Identity</option>
+      <option value="Passport">Passport</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="id_issue">ID Issue Authority</label>
+    <input
+      type="text"
+      class="form-control"
+      id="id_issue"
+      name="id_issue"
+      placeholder="ID Issue"
+    />
+  </div>
+  <div class="form-group">
+    <label for="phones">Phone Numbers</label>
+    <input
+      type="bigint"
+      class="form-control"
+      id="phone1"
+      name="phone1"
+      placeholder="Phone1"
+    />
+    <input
+      type="bigint"
+      class="form-control"
+      id="phone2"
+      name="phone2"
+      placeholder="Phone2"
+    />
+    <input
+      type="bigint"
+      class="form-control"
+      id="phone3"
+      name="phone3"
+      placeholder="Phone3"
+    />
+  </div>
+  <div class="form-group">
+    <label for="emails">Email Addresses</label>
+    <input
+      type="text"
+      class="form-control"
+      id="email1"
+      name="email1"
+      placeholder="Email1"
+    />
+    <input
+      type="text"
+      class="form-control"
+      id="email2"
+      name="email2"
+      placeholder="Email2"
+    />
+    <input
+      type="text"
+      class="form-control"
+      id="email3"
+      name="email3"
+      placeholder="Email3"
+    />
+  </div>
+ 
   <br />
   <div align="center">
-    <button type="submit" class="btn btn-primary">Charge</button>
+    <button type="submit" name="new" value="new" class="btn btn-primary" style="display:inline-block;">Add Customer</button>
+    <button type="submit" name="modify" value="modify" class="btn btn-primary" style="display:inline-block;margin-top:0;">Add Phone/Email</button>
   </div>
+  <br />
+  <br />
 </form>
 {% endblock %}

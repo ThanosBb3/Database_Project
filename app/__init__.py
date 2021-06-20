@@ -14,9 +14,9 @@ def create_app():
     App.config['SECRET_KEY'] = 'super secret key'
     mysql.init_app(App)
 
-    from app.backend import base, records, views, statistics, covid
+    from app.backend import home, records, views, statistics, covid
 
-    App.register_blueprint(base, url_prefix='/')
+    App.register_blueprint(home, url_prefix='/')
     App.register_blueprint(records, url_prefix='/records')
     App.register_blueprint(views, url_prefix='/')
     App.register_blueprint(covid, url_prefix='/')

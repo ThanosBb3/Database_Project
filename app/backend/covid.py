@@ -39,7 +39,7 @@ def covid_check():
         
         except:
             status = 400
-            flash("Please enter a positive integer", category='error')
+            flash("Please enter a valid NFC ID", category='error')
             return render_template("covid.html")
 
             
