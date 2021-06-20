@@ -17,8 +17,8 @@ table {
   <div class="form-group">
     <label for="info">Data</label>
     <select name="info" id="info">
-      <option value="Customer Info">Customer Info</option>
-      <option value="Service Sales">Service Sales</option>
+      <option value="Customer Info" {% if data == "Customer Info" %} selected {% endif %}>Customer Info</option>
+      <option value="Service Sales" {% if data == "Service Sales" %} selected {% endif %}>Service Sales</option>
     </select>
   </div>
   <br />

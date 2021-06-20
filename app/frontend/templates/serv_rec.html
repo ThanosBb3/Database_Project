@@ -17,13 +17,13 @@ table {
   <div class="form-group">
     <label for="service_type">Service</label>
     <select name="service_type" id="service_type">
-      <option value="All">All</option>
-      <option value="Bar">Bar</option>
-      <option value="Conference Room">Conference Room</option>
-      <option value="Gym">Gym</option>
-      <option value="Hair Salon">Hair Salon</option>
-      <option value="Restaurant">Restaurant</option>
-      <option value="Sauna">Sauna</option>
+      <option value="All" {% if service == "All" %} selected {% endif %}>All</option>
+      <option value="Bar" {% if service == "Bar" %} selected {% endif %}>Bar</option>
+      <option value="Conference Room" {% if service == "Conference Room" %} selected {% endif %}>Conference Room</option>
+      <option value="Gym" {% if service == "Gym" %} selected {% endif %}>Gym</option>
+      <option value="Hair Salon" {% if service == "Hair Salon" %} selected {% endif %}>Hair Salon</option>
+      <option value="Restaurant" {% if service == "Restaurant" %} selected {% endif %}>Restaurant</option>
+      <option value="Sauna" {% if service == "Sauna" %} selected {% endif %}>Sauna</option>
     </select>
     
   </div>

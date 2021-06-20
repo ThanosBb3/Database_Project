@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash
 from flask_mysqldb import MySQL
 from .. import mysql
 
@@ -24,8 +24,8 @@ def get_view():
         print(my_query)
         cur.execute(my_query)
         results = cur.fetchall()
+        flash("Here are your results!", category='success')
         return render_template("views.html", results=results, data=x)
+       
 
-        
-
-    return render_template("views.html", results=None)
+    return render_template("views.html")

@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block title %}Statistics{% endblock %} {% block content
+    %}
+    
+    <head>
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    table {
+        width: 90%;
+    }
+    </style>
+    </head>
+    <form method="POST">
+      <h3 align="center">Statistics</h3>
+      <div class="form-group">
+        <label for="age_group">Age Group</label>
+        <select name="age_group" id="age_group">
+          <option value="20-40" {% if y == "20-40" %} selected {% endif %}>20-40</option>
+          <option value="41-60" {% if y == "41-60" %} selected {% endif %}>41-60</option>
+          <option value="61+" {% if y == "61+" %} selected {% endif %}>61+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="time_period">Time Period</label>
+        <select name="time_period" id="time_period">
+          <option value="Last Year" {% if t == "Last Year" %} selected {% endif %}>Last Year</option>
+          <option value="Last Month" {% if t == "Last Month" %} selected {% endif %}>Last Month</option>
+        </select>
+      </div>
+
+      <br />
+      <div align="center">
+        <button type="submit" name="areas" value="areas" class="btn btn-primary" style="display:inline-block;">Busiest Areas</button>
+        <button type="submit" name="services" value="services" class="btn btn-primary" style="display:inline-block;margin-top:0;">Busiest Services</button>
+        <button type="submit" name="popular_services" value="popular_services" class="btn btn-primary" style="display:inline-block;margin-top:0;">Most Popular Services</button>
+    </div>
+    </form>
+    <br />
+    <br />
+    {% if pick == 0%}
+      <h3>List of Busiest Shared Areas</h3>
+      <div align="center" style="width:100%, overflow: auto;">
+        <table>
+          <tr>
+            <th>Area Name</th>
+            <th>No of Visits</th>
+          </tr>
+          {% if results != None%}
+            {% for result in results %}
+            <tr>
+            <td>{{result[0]}}</td>
+            <td>{{result[1]}}</td>
+            </tr>
+            {% endfor %}
+          {% endif %}  
+        </table>
+      </div>
+    {% endif %}
+    {% if pick == 1%}
+      <h3>List of Busiest Services</h3>
+      <div align="center" style="width:100%, overflow: auto;">
+        <table>
+          <tr>
+            <th>Service</th>
+            <th>No of Times Used</th>
+          </tr>
+          {% if results != None%}
+            {% for result in results %}
+            <tr>
+            <td>{{result[0]}}</td>
+            <td>{{result[1]}}</td>
+            </tr>
+            {% endfor %}
+          {% endif %}  
+        </table>
+      </div>
+    {% endif %}
+    {% if pick == 2%}
+      <h3>List of Most Popular Services</h3>
+      <div align="center" style="width:100%, overflow: auto;">
+        <table>
+          <tr>
+            <th>Service</th>
+            <th>No of People Who Used It</th>
+          </tr>
+          {% if results != None%}
+            {% for result in results %}
+            <tr>
+            <td>{{result[0]}}</td>
+            <td>{{result[1]}}</td>
+            </tr>
+            {% endfor %}
+          {% endif %}  
+        </table>
+      </div>
+    {% endif %}
+    {% endblock %}
