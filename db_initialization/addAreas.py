@@ -1,4 +1,3 @@
-import numpy as np
 
 def add_areas():
     from .connection import mydb, mycursor

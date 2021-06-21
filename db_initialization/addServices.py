@@ -1,4 +1,3 @@
-import numpy as np
 
 def add_services():
     from .connection import mydb, mycursor
