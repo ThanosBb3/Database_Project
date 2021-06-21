@@ -9,9 +9,9 @@ def home_fun():
     status=200
 
     mydb = ddb.connect(
-        host = "localhost",
-        user = "root",
-        passwd = "boftonelly",
+        host = "*******",
+        user = "*******",
+        passwd = "*******",
         database = "HotelDB"
     )
 
@@ -48,10 +48,15 @@ def home_fun():
             emails.append(email3)
 
         if request.form.get("new"):
-            if not last_name and first_name and birth_date and id and id_type and id_issue and (phone1 or phone2 or phone3) and (email1 or email2 or email3):
+            if not (last_name and first_name and birth_date and id and id_type and id_issue and (phone1 or phone2 or phone3) and (email1 or email2 or email3)):
                 flash('Please complete every field (at least 1 phone and 1 e-mail), except NFC_ID, to add a new customer', category="error")
                 status=400
                 return render_template("home.html")
+
+            elif not (id.isnumeric() and (phone1.isnumeric() or phone2.isnumeric() or phone3.isnumeric())):
+                flash('Please insert only numbers in identification and phone fields', category="error")
+                status=400
+                return render_template("home.html")    
 
             else:
                 my_query1 = """INSERT INTO customers(last_name, first_name, birth_date, id, id_type, id_issue)
@@ -90,8 +95,8 @@ def home_fun():
             print(my_query1)
             cur.execute(my_query1)
             result = cur.fetchall()
-            print(result)
-            if not nfc_id and (phone1 or phone2 or phone3 or email1 or email2 or email3):
+
+            if not (nfc_id and nfc_id.isnumeric() and ((phone1 and phone1.isnumeric()) or (phone2 and phone2.isnumeric()) or (phone3 and phone3.isnumeric()) or email1 or email2 or email3)):
                 flash('Please provide a valid NFC_ID and at least 1 phone or 1 e-mail', category="error")
                 status=400
                 return render_template("home.html")
@@ -102,7 +107,19 @@ def home_fun():
                 return render_template("home.html")
 
             else:
-                    
+
+                if len(phones):
+                    my_query4 = """DELETE FROM customer_phones WHERE NFC_ID={};""".format(nfc_id)
+                    print(my_query4)
+                    cur.execute(my_query4)
+                    mydb.commit()
+
+                if len(emails):
+                    my_query5 = """DELETE FROM customer_emails WHERE NFC_ID={};""".format(nfc_id)
+                    print(my_query5)
+                    cur.execute(my_query5)
+                    mydb.commit()
+
                 for item in phones:
                     my_query2 = """INSERT INTO customer_phones(NFC_ID, phone_number)
                                 VALUES ({}, {});
@@ -122,6 +139,29 @@ def home_fun():
                     mydb.commit()
 
                 flash('Information of customer added successfully!')
-                return render_template("home.html")               
+                return render_template("home.html")
+
+        elif request.form.get("delete"):
+
+            my_query1 = """SELECT MAX(NFC_ID) FROM customers;"""
+
+            print(my_query1)
+            cur.execute(my_query1)
+            result = cur.fetchall()
+
+            if not (nfc_id and nfc_id.isnumeric()) or int(nfc_id)<=0 or int(nfc_id)>result[0][0]:
+                flash('Please provide a valid NFC_ID for deletion', category="error")
+                status=400
+                return render_template("home.html")
+
+            else:
+
+                my_query2 = """DELETE FROM customers WHERE NFC_ID={};""".format(nfc_id)
+                print(my_query2)
+                cur.execute(my_query2)
+                mydb.commit()
+
+                flash('Customer deleted successfully!')
+                return render_template("home.html")                       
 
     return render_template("home.html")

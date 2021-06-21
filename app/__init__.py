@@ -7,11 +7,11 @@ mysql = MySQL()
 def create_app():
     
     App = Flask(__name__, static_folder='./frontend/static', template_folder='./frontend/templates')
-    App.config["MYSQL_USER"] = "root"
-    App.config["MYSQL_PASSWORD"] = "boftonelly"
-    App.config["MYSQL_HOST"] = "localhost"
+    App.config["MYSQL_USER"] = "******"
+    App.config["MYSQL_PASSWORD"] = "*********"
+    App.config["MYSQL_HOST"] = "********"
     App.config["MYSQL_DB"] = "HotelDB"
-    App.config['SECRET_KEY'] = 'super secret key'
+    App.config['SECRET_KEY'] = 'hjhjhhjhjhj'
     mysql.init_app(App)
 
     from app.backend import home, records, views, statistics, covid

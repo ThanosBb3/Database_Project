@@ -8,7 +8,7 @@ def add_visit_use():
 
     for i in range(180):
 
-        entry = datetime.datetime.now()-datetime.timedelta(days=5-i//36, hours=12-4*((i%36)//12))
+        entry = datetime.datetime.now()-datetime.timedelta(days=(44*7+1)-22*(i//12))
         arrival = entry.strftime("%Y-%m-%d %H:%M:%S")
 
         exit = entry+datetime.timedelta(days=3)
