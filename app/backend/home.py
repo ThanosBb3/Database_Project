@@ -9,13 +9,15 @@ def home_fun():
     status=200
 
     mydb = ddb.connect(
-        host = "*******",
-        user = "*******",
-        passwd = "*******",
+        host = "localhost",
+        user = "Thanos",
+        passwd = "thanos21",
         database = "HotelDB"
     )
 
     cur = mydb.cursor()
+    cur2 = mydb.cursor()
+
     if request.method == 'POST':
 
         phones = []
@@ -59,6 +61,11 @@ def home_fun():
                 return render_template("home.html")    
 
             else:
+
+                phones = list(set(phones))
+                emails = list(set(emails))
+
+
                 my_query1 = """INSERT INTO customers(last_name, first_name, birth_date, id, id_type, id_issue)
                             VALUES ('{}', '{}', '{}', {}, '{}', '{}');
                     """.format(last_name, first_name, birth_date, id, id_type, id_issue)
@@ -66,6 +73,12 @@ def home_fun():
                 print(my_query1)
                 cur.execute(my_query1)
                 mydb.commit()    
+
+                my_query11 = """SELECT MAX(NFC_ID) FROM customers;"""
+
+                print(my_query11)
+                cur2.execute(my_query11)
+                result1 = cur2.fetchall()
 
                 for item in phones:
                     my_query2 = """INSERT INTO customer_phones(NFC_ID, phone_number)
@@ -85,7 +98,7 @@ def home_fun():
                     cur.execute(my_query3)
                     mydb.commit()
 
-                flash('Customer added successfully!')
+                flash('Customer added successfully with NFC ID {} !'.format(result1[0][0]))
                 return render_template("home.html")  
 
         elif request.form.get("modify"):
@@ -104,9 +117,13 @@ def home_fun():
             elif int(nfc_id)<=0 or int(nfc_id)>result[0][0]:
                 flash('Please provide a valid NFC_ID and at least 1 phone or 1 e-mail', category="error")
                 status=400
-                return render_template("home.html")
+                return render_template("home.html")    
 
             else:
+
+                phones = list(set(phones))
+                emails = list(set(emails))
+
 
                 if len(phones):
                     my_query4 = """DELETE FROM customer_phones WHERE NFC_ID={};""".format(nfc_id)
@@ -121,6 +138,7 @@ def home_fun():
                     mydb.commit()
 
                 for item in phones:
+
                     my_query2 = """INSERT INTO customer_phones(NFC_ID, phone_number)
                                 VALUES ({}, {});
                         """.format(nfc_id, item)
@@ -131,14 +149,14 @@ def home_fun():
 
                 for item in emails:
                     my_query3 = """INSERT INTO customer_emails(NFC_ID, email_address)
-                                VALUES ({}, {});
+                                VALUES ({}, '{}');
                         """.format(nfc_id, item)
 
                     print(my_query3)
                     cur.execute(my_query3)
                     mydb.commit()
 
-                flash('Information of customer added successfully!')
+                flash('Information of customer updated successfully!')
                 return render_template("home.html")
 
         elif request.form.get("delete"):
