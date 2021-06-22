@@ -3,3 +3,4 @@ from .records import records
 from .views import views
 from .covid import covid
 from .statistics import statistics
+from .register import register

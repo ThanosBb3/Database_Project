@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %}Register{% endblock %} {% block content
+%}
+<h1 align="center">Register a customer to a provided service</h1>
+</br>
+</br>
+<form method="POST">
+  <div class="form-group">
+    <label for="NFC_ID">NFC ID</label>
+    <input
+      type="int"
+      class="form-control"
+      id="NFC_ID"
+      name="NFC_ID"
+      placeholder="Existing customer NFC ID"
+    />
+  </div>
+  <div class="form-group">
+    <label for="service_name">Service</label>
+    <select name="service_name" id="service_name">
+      <option value="Room" {% if service == "Room" %} selected {% endif %}>Room</option>
+      <option value="Conference Room" {% if service == "Conference Room" %} selected {% endif %}>Conference Room</option>
+      <option value="Gym" {% if service == "Gym" %} selected {% endif %}>Gym</option>
+      <option value="Sauna" {% if service == "Sauna" %} selected {% endif %}>Sauna</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="room">Available rooms</label>
+    <select name="room" id="room">
+      {% for item in x%}  
+      <option value="{{item[0]}}" >{{item[0]}}</option>
+      {%endfor%}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="room2">Taken rooms</label>
+    <select name="room2" id="room2">
+      {% for item in y%}  
+      <option value="{{item[0]}}" >{{item[0]}}</option>
+      {%endfor%}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="days">Duration</label>
+    <input
+      type="int"
+      class="form-control"
+      id="days"
+      name="days"
+      placeholder="Duration"
+    /> 
+  </div>
+ 
+  <br />
+  <div align="center">
+    <button type="submit" name="register" value="register" class="btn btn-primary" style="display:inline-block;">Register</button>
+    <button type="submit" name="unregister" value="unregister" class="btn btn-primary" style="display:inline-block;margin-top:0;">Unregister</button>
+  </div>
+  <br />
+  <br />
+</form>
+{% endblock %}
