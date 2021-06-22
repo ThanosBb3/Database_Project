@@ -78,13 +78,13 @@ git clone https://github.com/ThanosBb3/Database_Project
 <br />
 Step 5: Add your Database credentials in the following files:
 
-*	"app\backend\home.py"
+*	app\backend\home.py
 
-*	"app\backend\register.py"
+*	app\backend\register.py
 
-*	"app\__init__.py"
+*	app\\__init__.py
 
-*	"db_initialization\connection.py"
+*	db_initialization\connection.py
 <br />
 <br />
 Step 6: Run 
