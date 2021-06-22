@@ -12,13 +12,11 @@ def get_view():
         x = request.form.get("info")
 
         if x == 'Customer Info':
-            my_query = """SELECT *
-                FROM customers_info;
+            my_query = """SELECT * FROM customers_info;
                 """
 
         elif x == 'Service Sales':
-            my_query = """SELECT *
-                FROM services_sales;
+            my_query = """SELECT * FROM services_sales;
                 """
 
         print(my_query)

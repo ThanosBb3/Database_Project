@@ -11,8 +11,8 @@ def register_fun():
 
     mydb = ddb.connect(
         host = "localhost",
-        user = "Thanos",
-        passwd = "thanos21",
+        user = "root",
+        passwd = "boftonelly",
         database = "HotelDB"
     )
 
