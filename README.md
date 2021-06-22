@@ -44,28 +44,38 @@ Step 1: At first, initialize a mysql database at a localhost.
 <br />
 <br />
 Step 2: Then, run the folowing command in terminal, using your credentials in order to connect in mysql host:
-
+```bash
 mysql --user=“your user name” --password=”your password” --host=localhost
-<br />
+```
 <br />
 <br />
 Step 3: Run the following inside mysql command prompt, strictly at this order:
 
-* Source “path of the HotelDB.sql file” 
 
-*	Source “path of the indexes.sql file”
+```bash
+Source “path of the HotelDB.sql file” 
+```
 
-*	Source “path of the customers_view.sql file”
 
-*	Source “path of the services_view.sql file”
-<br />
+```bash
+Source “path of the indexes.sql file”
+```
+
+```bash
+Source “path of the customers_view.sql file”
+```
+
+```bash
+Source “path of the services_view.sql file”
+```
 <br />
 Step 4: Back at the Terminal run:
-
+```bash
 git clone https://github.com/ThanosBb3/Database_Project
+```
 <br />
 <br />
-
+<br />
 Step 5: Add your Database credentials in the following files:
 
 *	app\backend\home.py
@@ -75,18 +85,23 @@ Step 5: Add your Database credentials in the following files:
 *	app\__init__.py
 
 *	db_initialization\connection.py
-
 <br />
 <br />
 Step 6: Run 
 
+```bash
 python main_db.py
-to add the data on your Database.
+```
 
+to add the data on your Database.
+<br />
 <br />
 <br />
 Step 7: Now that everything is set up run:
 
+```bash
 python main_app.py
+```
+
 and open your browser on http://localhost:8765/ to see the app.
 
